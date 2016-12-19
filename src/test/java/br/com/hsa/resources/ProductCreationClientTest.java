@@ -9,7 +9,7 @@ import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.hsa.models.Product;
+import br.com.hsa.models.Note;
 
 public class ProductCreationClientTest
 {
@@ -20,7 +20,7 @@ public class ProductCreationClientTest
       Builder request = client.target("http://localhost:8080/hsa/products")
             .request().accept(MediaType.APPLICATION_JSON);
 
-      Entity<Product> entity = Entity.entity(new Product("new product"), MediaType.APPLICATION_JSON);
+      Entity<Note> entity = Entity.entity(new Note(), MediaType.APPLICATION_JSON);
       Response response = request.buildPost(entity).invoke();
 
       System.out.println("Following location " + response.getLocation());
