@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Note {
 	
 	public static final String URI = "/notes";
+	public static final String URI_CREATE = "/notes/create";
+	public static final String URI_RETRIEVE = "/notes/list";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

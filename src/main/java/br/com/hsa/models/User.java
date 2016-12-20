@@ -21,7 +21,7 @@ public class User implements Cloneable {
 	
 	public static final String URI = "/users";
 
-	private static final String URI_REMEMBER_PASSWORD = "/remember_password";
+	public static final String URI_REMEMBER_PASSWORD = "/remember_password";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -94,7 +94,7 @@ public class User implements Cloneable {
 		this.activeToken = activeToken;
 	}
 	
-	public User withNextSteps() {
+	public User withNextStepsAfterSignUp() {
 		try {
 			User user = (User) this.clone();
 			user.links.add(new Link("login", UserSession.URI, "POST"));

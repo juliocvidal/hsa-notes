@@ -28,7 +28,7 @@ public class UsersResource implements Serializable {
 	public Response signUp(User user){
 		
 		userDAO.save(user);
-		User savedUser = user.withNextSteps();
+		User savedUser = user.withNextStepsAfterSignUp();
 		
 		try {
 			return Response.created(new URI(User.URI + "/" + savedUser.getId())).entity(savedUser).build();
