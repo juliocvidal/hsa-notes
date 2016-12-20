@@ -15,6 +15,16 @@ public class Note {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	private String text;
+	
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
 
 	public Long getId() {
 		return id;
