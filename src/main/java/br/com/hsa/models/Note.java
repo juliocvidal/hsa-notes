@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 public class Note {
 	
+	public static final String URI = "/notes/";
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -45,7 +47,13 @@ public class Note {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 }

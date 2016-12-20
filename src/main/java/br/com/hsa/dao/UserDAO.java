@@ -1,11 +1,13 @@
 package br.com.hsa.dao;
 
+import java.io.Serializable;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.com.hsa.models.User;
 
-public class UserDAO {
+public class UserDAO implements Serializable{
 	
 	@Inject
 	private EntityManager em;

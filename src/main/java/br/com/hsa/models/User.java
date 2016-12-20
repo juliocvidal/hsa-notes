@@ -3,10 +3,7 @@ package br.com.hsa.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -19,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 public class User implements Cloneable {
 	
-	public static String URI = "/users/";
+	public static final String URI = "/users/";
 	
 	@Id
 	private String email;
@@ -28,7 +25,7 @@ public class User implements Cloneable {
 	
 	private String password;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="user")
+	@OneToMany(mappedBy="user")
 	private List<Note> notes = new ArrayList<Note>();
 	
 	private String activeToken;
@@ -75,7 +72,7 @@ public class User implements Cloneable {
 	public void setActiveToken(String activeToken) {
 		this.activeToken = activeToken;
 	}
-
+	
 	public User withNextSteps() {
 		try {
 			User user = (User) this.clone();

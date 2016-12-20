@@ -10,6 +10,8 @@
 		<jta-data-source>java:/hsanotesDS</jta-data-source>
 		
 		<class>br.com.hsa.models.Note</class>
+		<class>br.com.hsa.models.User</class>
+		<class>br.com.hsa.models.UserSession</class>
 		
 		<properties>
 

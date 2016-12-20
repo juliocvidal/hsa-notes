@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -24,11 +25,12 @@ public class NotesResource implements Serializable {
 	
 	@Path("")
 	@POST
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response save(Note note){
 		noteDAO.save(note);
 		try {
-			return Response.created(new URI("/notes/" + note.getId())).entity(note).build();
+			return Response.created(new URI(note.URI + note.getId())).entity(note).build();
 		} catch (URISyntaxException e) {
 			return Response.serverError().entity(e).build();
 		}
