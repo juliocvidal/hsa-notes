@@ -9,23 +9,23 @@ import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.hsa.models.Note;
+import br.com.hsa.models.User;
 
-public class ProductCreationClientTest
+public class UserCreationClientTest
 {
 
    public static void main(String[] args) throws MalformedURLException
    {
       Client client = ClientBuilder.newClient();
-      Builder request = client.target("http://localhost:8080/hsa/products")
+      Builder request = client.target("https://localhost:8443/hsaNotes-1.0.0/users/signup")
             .request().accept(MediaType.APPLICATION_JSON);
 
-      Entity<Note> entity = Entity.entity(new Note(), MediaType.APPLICATION_JSON);
+      Entity<User> entity = Entity.entity(new User(), MediaType.APPLICATION_JSON);
       Response response = request.buildPost(entity).invoke();
 
       System.out.println("Following location " + response.getLocation());
 
-      ProductListClientTest.list(response.getLocation().toURL().toExternalForm());
+      NotesListClientTest.list(response.getLocation().toURL().toExternalForm());
 
    }
 }

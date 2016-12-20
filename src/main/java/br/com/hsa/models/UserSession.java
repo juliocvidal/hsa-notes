@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class UserSession {
 	
-	public static final String URI = "/login/";
+	public static final String URI = "/login";
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

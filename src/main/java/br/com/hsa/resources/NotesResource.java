@@ -30,7 +30,7 @@ public class NotesResource implements Serializable {
 	public Response save(Note note){
 		noteDAO.save(note);
 		try {
-			return Response.created(new URI(note.URI + note.getId())).entity(note).build();
+			return Response.created(new URI(note.URI + "/" + note.getId())).entity(note).build();
 		} catch (URISyntaxException e) {
 			return Response.serverError().entity(e).build();
 		}

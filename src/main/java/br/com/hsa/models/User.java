@@ -3,7 +3,10 @@ package br.com.hsa.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -16,9 +19,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 public class User implements Cloneable {
 	
-	public static final String URI = "/users/";
-	
+	public static final String URI = "/users";
+
+	private static final String URI_REMEMBER_PASSWORD = "/remember_password";
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(unique=true)
 	private String email;
 	
 	private String name;
@@ -32,6 +41,18 @@ public class User implements Cloneable {
 	
 	@Transient
 	private List<Link> links = new ArrayList<>();
+	
+	public List<Link> getLinks() {
+		return links;
+	}
+
+	public void setLinks(List<Link> links) {
+		this.links = links;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getEmail() {
 		return email;
@@ -77,12 +98,16 @@ public class User implements Cloneable {
 		try {
 			User user = (User) this.clone();
 			user.links.add(new Link("login", UserSession.URI, "POST"));
-			user.links.add(new Link("remember_password", User.URI, "GET"));
+			user.links.add(new Link("remember_password", User.URI + User.URI_REMEMBER_PASSWORD + "/" + user.getId(), "GET"));
 			return user;
 		} catch (CloneNotSupportedException e) {
 			throw new RuntimeException();
 		}
 		
+	}
+
+	public Long getId() {
+		return this.id;
 	}
 
 }

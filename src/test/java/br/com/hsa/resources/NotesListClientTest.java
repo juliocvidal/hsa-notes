@@ -10,12 +10,12 @@ import javax.ws.rs.core.Response;
 
 import br.com.hsa.models.Note;
 
-public class ProductListClientTest
+public class NotesListClientTest
 {
 
    public static void main(String[] args)
    {
-      list("http://localhost:8080/hsa/products");
+      list("https://localhost:8443/hsaNotes-1.0.0/notes");
 
    }
 

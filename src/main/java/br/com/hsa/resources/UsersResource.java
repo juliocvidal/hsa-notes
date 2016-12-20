@@ -21,7 +21,7 @@ public class UsersResource implements Serializable {
 	@Inject
 	private UserDAO userDAO;
 	
-	@Path("")
+	@Path("/signup")
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
@@ -31,7 +31,7 @@ public class UsersResource implements Serializable {
 		User savedUser = user.withNextSteps();
 		
 		try {
-			return Response.created(new URI(user.URI)).entity(savedUser).build();
+			return Response.created(new URI(User.URI + "/" + savedUser.getId())).entity(savedUser).build();
 		} catch (URISyntaxException e) {
 			return Response.serverError().entity(e).build();
 		}

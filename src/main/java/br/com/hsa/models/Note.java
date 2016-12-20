@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 public class Note {
 	
-	public static final String URI = "/notes/";
+	public static final String URI = "/notes";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
