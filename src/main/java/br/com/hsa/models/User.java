@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,10 +17,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class User {
+public class User implements Cloneable {
+	
+	public static String URI = "/users/";
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String email;
 	
 	private String name;
@@ -30,6 +32,9 @@ public class User {
 	private List<Note> notes = new ArrayList<Note>();
 	
 	private String activeToken;
+	
+	@Transient
+	private List<Link> links = new ArrayList<>();
 
 	public String getEmail() {
 		return email;
@@ -69,6 +74,18 @@ public class User {
 
 	public void setActiveToken(String activeToken) {
 		this.activeToken = activeToken;
+	}
+
+	public User withNextSteps() {
+		try {
+			User user = (User) this.clone();
+			user.links.add(new Link("login", UserSession.URI, "POST"));
+			user.links.add(new Link("remember_password", User.URI, "GET"));
+			return user;
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException();
+		}
+		
 	}
 
 }
