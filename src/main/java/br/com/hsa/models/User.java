@@ -1,8 +1,12 @@
 package br.com.hsa.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,16 +19,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class User {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String email;
 	
 	private String name;
 	
 	private String password;
 	
-	@OneToMany
-	private List<Note> notes;
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="user")
+	private List<Note> notes = new ArrayList<Note>();
 	
-	private UserSession userSession;
+	private String activeToken;
 
 	public String getEmail() {
 		return email;
@@ -58,14 +63,12 @@ public class User {
 		this.notes = notes;
 	}
 
-	public UserSession getUserSession() {
-		return userSession;
+	public String getActiveToken() {
+		return activeToken;
 	}
 
-	public void setUserSession(UserSession userSession) {
-		this.userSession = userSession;
+	public void setActiveToken(String activeToken) {
+		this.activeToken = activeToken;
 	}
-	
-	
 
 }

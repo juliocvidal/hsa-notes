@@ -4,21 +4,26 @@ import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class UserSession {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	private boolean active;
 	
 	private String token;
 
-	private Calendar started;
+	@Temporal(TemporalType.DATE)
+	private Calendar started = Calendar.getInstance();
 	
-	private Calendar finished;
+	@Temporal(TemporalType.DATE)
+	private Calendar finished = Calendar.getInstance();
 	
 	public Long getId() {
 		return id;
