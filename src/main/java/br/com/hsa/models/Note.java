@@ -16,6 +16,8 @@ public class Note {
 	@GeneratedValue
 	private Long id;
 	
+	private User user;
+	
 	private String text;
 	
 	public String getText() {
