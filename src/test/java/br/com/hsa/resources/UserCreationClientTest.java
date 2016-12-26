@@ -17,7 +17,7 @@ public class UserCreationClientTest
    public static void main(String[] args) throws MalformedURLException
    {
       Client client = ClientBuilder.newClient();
-      Builder request = client.target("https://localhost:8443/hsaNotes-1.0.0/users/signup")
+      Builder request = client.target("https://localhost:8443/hsanotes/users/signup")
             .request().accept(MediaType.APPLICATION_JSON);
 
       Entity<User> entity = Entity.entity(new User(), MediaType.APPLICATION_JSON);

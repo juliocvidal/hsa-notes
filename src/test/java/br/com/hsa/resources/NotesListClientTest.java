@@ -15,7 +15,7 @@ public class NotesListClientTest
 
    public static void main(String[] args)
    {
-      list("https://localhost:8443/hsaNotes-1.0.0/notes");
+      list("https://localhost:8443/hsanotes/notes");
 
    }
 
